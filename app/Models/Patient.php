@@ -9,7 +9,7 @@ class Patient extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    // protected $with = (['hospital']);
+    protected $with = (['hospital']);
 
     public function hospital()
     {

@@ -24,6 +24,7 @@ class PatientDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addindexColumn()
+            ->editColumn('hospitals.name', fn ($row) => $row->hospital->name)
             ->editColumn('created_at', fn ($row) => $row->created_at->format('d-m-Y H:i:s'))
             ->editColumn('updated_at', fn ($row) => $row->created_at->format('d-m-Y H:i:s'))
             ->addColumn('action', function ($row) {
@@ -71,7 +72,7 @@ class PatientDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
-            Column::make('hospital_id')->title('Rumah Sakit'),
+            Column::make('hospital_id')->title('Rumah Sakit')->data('hospitals.name'),
             Column::make('name')->title('Nama'),
             Column::make('address')->title('Alamat'),
             Column::make('email'),
