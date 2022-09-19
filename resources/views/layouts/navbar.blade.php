@@ -16,22 +16,6 @@
           <a class="nav-link " href="{{ route('patients.index') }}">Pasien</a>
         </li>
 
-        {{-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Blog
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>
-              <a class="dropdown-item " href="#">Post</a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <a class="dropdown-item " href="#">Category</a>
-            </li>
-            <li><a class="dropdown-item " href="#">Author</a></li>
-          </ul>
-        </li> --}}
-
       </ul>
 
       <ul class="navbar-nav ms-auto">
