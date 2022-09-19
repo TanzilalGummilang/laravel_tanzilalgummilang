@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\HospitalDataTable;
+use App\Http\Requests\HospitalRequest;
 use App\Models\Hospital;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,9 @@ class HospitalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(HospitalDataTable $dataTable)
     {
-        //
+        return $dataTable->render('hospital.index');
     }
 
     /**
@@ -24,7 +26,7 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        //
+        return view('hospital.action', ['hospital' => new Hospital()]);
     }
 
     /**
@@ -33,9 +35,13 @@ class HospitalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HospitalRequest $request)
     {
-        //
+        Hospital::create($request->all());
+        return response()->json([
+            'status' => '200',
+            'message' => 'create data hospital succesfully'
+        ]);
     }
 
     /**
@@ -57,7 +63,7 @@ class HospitalController extends Controller
      */
     public function edit(Hospital $hospital)
     {
-        //
+        return view('hospital.action', compact('hospital'));
     }
 
     /**
@@ -67,9 +73,18 @@ class HospitalController extends Controller
      * @param  \App\Models\Hospital  $hospital
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Hospital $hospital)
+    public function update(HospitalRequest $request, Hospital $hospital)
     {
-        //
+        $hospital->name = $request->name;
+        $hospital->address = $request->address;
+        $hospital->email = $request->email;
+        $hospital->phone = $request->phone;
+        $hospital->save();
+
+        return response()->json([
+            'status' => '200',
+            'message' => 'update hospital succesfully'
+        ]);
     }
 
     /**
@@ -80,6 +95,10 @@ class HospitalController extends Controller
      */
     public function destroy(Hospital $hospital)
     {
-        //
+        $hospital->delete();
+        return response()->json([
+            'status' => '200',
+            'message' => 'Hapus data rumah sakit berhasil'
+        ]);
     }
 }
