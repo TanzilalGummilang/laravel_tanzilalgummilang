@@ -72,8 +72,13 @@ class PatientDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
-            Column::make('hospital_id')->title('Rumah Sakit')->data('hospitals.name'),
-            Column::make('name')->title('Nama'),
+            Column::make('hospital_id')
+                ->title('Rumah Sakit')
+                ->data('hospitals.name')
+                ->width(110),
+            Column::make('name')
+                ->title('Nama')
+                ->width(110),
             Column::make('address')->title('Alamat'),
             Column::make('email'),
             Column::make('phone')->title('Telp'),
