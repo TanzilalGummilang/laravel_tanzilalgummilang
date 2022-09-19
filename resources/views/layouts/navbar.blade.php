@@ -9,11 +9,11 @@
       <ul class="navbar-nav">
 
         <li class="nav-item">
-          <a class="nav-link " href="{{ route('hospitals.index') }}">Rumah Sakit</a>
+          <a class="nav-link {{ Request::is('hospitals') ? 'active' : '' }}" href="{{ route('hospitals.index') }}">Rumah Sakit</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " href="{{ route('patients.index') }}">Pasien</a>
+          <a class="nav-link {{ Request::is('patients') ? 'active' : '' }}" href="{{ route('patients.index') }}">Pasien</a>
         </li>
 
       </ul>
