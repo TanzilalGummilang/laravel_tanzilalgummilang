@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HospitalController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('hospitals', HospitalController::class)->except('show');
+Route::middleware(['auth'])->group(function() {
+    Route::resource('hospitals', HospitalController::class)->except('show');
+    Route::resource('patients', PatientController::class)->except('show');
+});

@@ -13,7 +13,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link " href="#">Pasien</a>
+          <a class="nav-link " href="{{ route('patients.index') }}">Pasien</a>
         </li>
 
         {{-- <li class="nav-item dropdown">

@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Hospital;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class HospitalDataTable extends DataTable
+class PatientDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -38,10 +38,10 @@ class HospitalDataTable extends DataTable
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Hospital $model
+     * @param \App\Models\Patient $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Hospital $model): QueryBuilder
+    public function query(Patient $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -54,7 +54,7 @@ class HospitalDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('hospital-table')
+            ->setTableId('patient-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             ->orderBy(1)
@@ -71,12 +71,13 @@ class HospitalDataTable extends DataTable
     {
         return [
             Column::make('DT_RowIndex')->title('No')->searchable(false)->orderable(false),
+            Column::make('hospital_id')->title('Rumah Sakit'),
             Column::make('name')->title('Nama'),
             Column::make('address')->title('Alamat'),
             Column::make('email'),
             Column::make('phone')->title('Telp'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            // Column::make('created_at'),
+            // Column::make('updated_at'),
             Column::computed('action')
                 ->exportable(false)
                 ->printable(false)
@@ -92,6 +93,6 @@ class HospitalDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Hospital_' . date('YmdHis');
+        return 'Patient_' . date('YmdHis');
     }
 }
